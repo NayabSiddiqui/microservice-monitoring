@@ -3,4 +3,10 @@ spring:
     name: books-service
 server:
   servlet:
-    context-path: /books
+    context-path: /books-api
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
