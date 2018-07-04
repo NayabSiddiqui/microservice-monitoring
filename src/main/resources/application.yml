@@ -2,11 +2,8 @@ spring:
   application:
     name: books-service
 server:
-  servlet:
-    context-path: /books-api
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
+  context-path: /books-api
+endpoints:
+  trace:
+    sensitive: false
 
