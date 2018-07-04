@@ -27,3 +27,6 @@ mvnw.cmd
 /dist/
 /nbdist/
 /.nb-gradle/
+
+### docker ###
+docker/
