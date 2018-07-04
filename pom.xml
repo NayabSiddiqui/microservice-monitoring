@@ -23,6 +23,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <lombok.version>1.18.0</lombok.version>
+        <micrometer.version>1.0.5</micrometer.version>
     </properties>
 
     <dependencies>
@@ -34,6 +35,19 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <!--region Metrics and Monitoring-->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-spring-legacy</artifactId>
+            <version>${micrometer.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-influx</artifactId>
+            <version>${micrometer.version}</version>
+        </dependency>
+        <!--endregion-->
 
         <!--region Utilities-->
         <dependency>
