@@ -1,6 +1,8 @@
 spring:
   application:
     name: books-service
+  jackson:
+    date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
 server:
   context-path: /books-api
 endpoints:
