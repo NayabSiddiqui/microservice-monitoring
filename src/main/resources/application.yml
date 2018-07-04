@@ -10,6 +10,9 @@ endpoints:
     sensitive: false
 management:
   metrics:
+    web:
+      server:
+        auto-time-requests: true
     export:
       influx:
         uri: http://localhost:8086

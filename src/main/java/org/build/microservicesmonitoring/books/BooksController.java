@@ -23,4 +23,9 @@ public class BooksController {
     public ResponseEntity<?> getAllBooks() throws IOException {
         return ResponseEntity.ok(service.getAllBooks());
     }
+
+    @GetMapping(path = "/countries")
+    public ResponseEntity<?> getBooksByCountry() throws IOException {
+        return ResponseEntity.ok(service.getAllCountriesForBooks());
+    }
 }
