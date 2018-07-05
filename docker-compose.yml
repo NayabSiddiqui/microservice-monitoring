@@ -2,10 +2,9 @@ version: '3'
 
 services:
   influxdb:
-    image: influxdb
-    volumes:
-      - ./docker/influxdb/data:/var/lib/influxdb
+    image: tutum/influxdb
     ports:
+      - 8083:8083
       - 8086:8086
   grafana:
     image: grafana/grafana

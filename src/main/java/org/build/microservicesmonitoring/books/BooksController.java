@@ -20,12 +20,12 @@ public class BooksController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getAllBooks() throws IOException {
+    public ResponseEntity<?> getAllBooks() throws IOException, InterruptedException {
         return ResponseEntity.ok(service.getAllBooks());
     }
 
     @GetMapping(path = "/countries")
-    public ResponseEntity<?> getBooksByCountry() throws IOException {
+    public ResponseEntity<?> getBooksByCountry() throws IOException, InterruptedException {
         return ResponseEntity.ok(service.getAllCountriesForBooks());
     }
 }

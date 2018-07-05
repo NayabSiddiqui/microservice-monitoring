@@ -14,16 +14,18 @@ import java.util.stream.Collectors;
 @Service
 public class BooksService {
 
-    List<Book> getAllBooks() throws IOException {
+    List<Book> getAllBooks() throws IOException, InterruptedException {
         File file = new File(getClass().getResource("/response/books.json").getFile());
         ObjectMapper objectMapper = new ObjectMapper();
+        Thread.sleep(500);
         return Arrays.asList(objectMapper.readValue(file, Book[].class));
     }
 
-    List<String> getAllCountriesForBooks() throws IOException {
+    List<String> getAllCountriesForBooks() throws IOException, InterruptedException {
         File file = new File(getClass().getResource("/response/books.json").getFile());
         ObjectMapper objectMapper = new ObjectMapper();
         List<Book> books = Arrays.asList(objectMapper.readValue(file, Book[].class));
+        Thread.sleep(1000);
         return books.stream()
                 .map(book -> book.getCountry())
                 .collect(Collectors.toList());
