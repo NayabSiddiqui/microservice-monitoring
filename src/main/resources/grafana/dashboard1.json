@@ -218,6 +218,7 @@
       "tableColumn": "",
       "targets": [
         {
+          "alias": "",
           "groupBy": [],
           "measurement": "system.cpu.usage",
           "orderByTime": "ASC",
@@ -489,11 +490,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "$tag_uri",
+          "alias": "$tag_host$tag_uri",
           "groupBy": [
             {
               "params": [
                 "uri"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "host"
               ],
               "type": "tag"
             }
@@ -502,7 +509,7 @@
           "measurement": "http.server.requests",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"count\", \"mean\" FROM \"http.server.requests\" WHERE $timeFilter GROUP BY \"uri\"",
+          "query": "SELECT \"count\" FROM \"http.server.requests\" WHERE $timeFilter GROUP BY \"uri\", \"host\"",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -599,11 +606,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "$tag_uri",
+          "alias": "$tag_host$tag_uri",
           "groupBy": [
             {
               "params": [
                 "uri"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "host"
               ],
               "type": "tag"
             }
@@ -668,6 +681,226 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_BOOKS_API}",
+      "fill": 2,
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 0,
+        "y": 24
+      },
+      "id": 13,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": false,
+        "show": true,
+        "sideWidth": null,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "null as zero",
+      "percentage": false,
+      "pointradius": 0.5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_host",
+          "groupBy": [
+            {
+              "params": [
+                "host"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "jvm.memory.used",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"count\", \"mean\" FROM \"http.server.requests\" WHERE $timeFilter GROUP BY \"uri\"",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "JVM Memory Usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "dtdurationms",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_BOOKS_API}",
+      "fill": 2,
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 8,
+        "y": 24
+      },
+      "id": 14,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": false,
+        "show": true,
+        "sideWidth": null,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "null as zero",
+      "percentage": false,
+      "pointradius": 0.5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_host",
+          "groupBy": [
+            {
+              "params": [
+                "host"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "jvm.threads.live",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"count\", \"mean\" FROM \"http.server.requests\" WHERE $timeFilter GROUP BY \"uri\"",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "JVM Live Threads",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "dtdurationms",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
   "refresh": "5s",
@@ -709,5 +942,5 @@
   "timezone": "",
   "title": "Microservices monitor",
   "uid": "18sXW8Dmk",
-  "version": 15
+  "version": 23
 }
