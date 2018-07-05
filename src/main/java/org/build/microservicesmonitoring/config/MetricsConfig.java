@@ -9,19 +9,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.time.Duration;
-
 @Configuration
 public class MetricsConfig {
-
-    private static final Duration HISTOGRAM_EXPIRY = Duration.ofMinutes(1);
-
-    private static final Duration STEP = Duration.ofSeconds(5);
 
     private String hostId = "Blaze";
 
     @Value("${spring.application.name}")
     private String serviceId;
+
+    @Value("${server.context-path}")
+    private String serverContextPath;
 
     @Bean
     public MeterRegistryCustomizer<MeterRegistry> metricsCommonTags() { // (2)
@@ -31,6 +28,7 @@ public class MetricsConfig {
                     String uri = id.getTag("uri");
                     return nonMonitoredEndpoints(uri);
                 }))
+                .meterFilter(MeterFilter.replaceTagValues("uri", s -> serverContextPath.concat(s)))
                 .meterFilter(new MeterFilter() {
                     @Override
                     public DistributionStatisticConfig configure(Meter.Id id,
