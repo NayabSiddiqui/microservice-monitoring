@@ -2,6 +2,7 @@ package org.build.microservicesmonitoring.config;
 
 import io.micrometer.core.instrument.Meter;
 import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Tag;
 import io.micrometer.core.instrument.config.MeterFilter;
 import io.micrometer.core.instrument.distribution.DistributionStatisticConfig;
 import io.micrometer.spring.autoconfigure.MeterRegistryCustomizer;
@@ -29,6 +30,16 @@ public class MetricsConfig {
                     return nonMonitoredEndpoints(uri);
                 }))
                 .meterFilter(MeterFilter.replaceTagValues("uri", s -> serverContextPath.concat(s)))
+                .meterFilter(MeterFilter.replaceTagValues("userId", s -> "my own user"))
+                .meterFilter(new MeterFilter() {
+                    @Override
+                    public Meter.Id map(Meter.Id id) {
+                        if (id.getName().equals("http.server.requests")) {
+                            return id.withName(id.getName()).withTag(Tag.of("userId", "some random user"));
+                        }
+                        return id;
+                    }
+                })
                 .meterFilter(new MeterFilter() {
                     @Override
                     public DistributionStatisticConfig configure(Meter.Id id,
