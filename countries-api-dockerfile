@@ -1,0 +1,10 @@
+FROM openjdk:10-jre-slim
+
+# copy jar into container
+RUN mkdir -p /countries-api
+VOLUME /tmp
+COPY countries-api/target/countries-api*.jar /countries-api/countries-api.jar
+
+WORKDIR /countries-api
+
+CMD java -jar countries-api.jar
