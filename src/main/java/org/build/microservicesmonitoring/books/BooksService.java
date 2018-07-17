@@ -2,6 +2,8 @@ package org.build.microservicesmonitoring.books;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.build.microservicesmonitoring.books.domain.Book;
+import org.build.microservicesmonitoring.countries.CountryClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -10,8 +12,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
+
 @Service
 public class BooksService {
+
+    private final CountryClient countryClient;
+
+    @Autowired
+    public BooksService(CountryClient countryClient) {
+        this.countryClient = countryClient;
+    }
 
     List<Book> getAllBooks() throws IOException, InterruptedException {
         InputStream stream = getClass().getResourceAsStream("/response/books.json");
@@ -21,12 +32,8 @@ public class BooksService {
     }
 
     List<String> getAllCountriesForBooks() throws IOException, InterruptedException {
-        InputStream stream = getClass().getResourceAsStream("/response/books.json");
-        ObjectMapper objectMapper = new ObjectMapper();
-        List<Book> books = Arrays.asList(objectMapper.readValue(stream, Book[].class));
-        Thread.sleep(1000);
-        return books.stream()
-                .map(book -> book.getCountry())
-                .collect(Collectors.toList());
+        return countryClient.getAllCountries().stream()
+                .map(country -> country.getName())
+                .collect(toList());
     }
 }

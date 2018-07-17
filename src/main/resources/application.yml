@@ -8,6 +8,10 @@ server:
 endpoints:
   trace:
     sensitive: false
+countries-api:
+  base-url: http://192.168.1.6:9090/countries-api
+  endpoints:
+    countries: /countries/
 management:
   metrics:
     web:
