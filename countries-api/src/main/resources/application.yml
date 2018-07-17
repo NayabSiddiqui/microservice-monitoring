@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: countries-service
+  jackson:
+    date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+server:
+  context-path: /countries-api
+  port: 8081
+endpoints:
+  trace:
+    sensitive: false
