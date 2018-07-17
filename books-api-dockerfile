@@ -1,0 +1,10 @@
+FROM openjdk:10-jre-slim
+
+# copy jar into container
+RUN mkdir -p /books-api
+VOLUME /tmp
+COPY target/microservices-monitoring-*.jar /books-api/books-api.jar
+
+WORKDIR /books-api
+
+CMD java -jar books-api.jar

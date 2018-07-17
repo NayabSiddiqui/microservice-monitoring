@@ -12,3 +12,13 @@ services:
       - 3000:3000
     depends_on:
       - influxdb
+  books-api:
+    container_name: books-api
+    build:
+      context: .
+      dockerfile: books-api-dockerfile
+    image: books-api:latest
+    ports:
+      - 8080:8080
+    depends_on:
+      - influxdb
