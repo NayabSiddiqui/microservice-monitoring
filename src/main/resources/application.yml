@@ -3,15 +3,19 @@ spring:
     name: books-service
   jackson:
     date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+
 server:
   context-path: /books-api
+
 endpoints:
   trace:
     sensitive: false
+
 countries-api:
   base-url: http://192.168.1.6:9090/countries-api
   endpoints:
     countries: /countries/
+
 management:
   metrics:
     web:
@@ -27,3 +31,7 @@ management:
       percentiles[http.server.requests]: 0.5, 0.75, 0.95, 0.99
       percentiles-histogram[http.server.requests]: true
       sla[http.server.requests]: 10ms, 100ms, 500ms, 1000ms, 2000ms, 5000ms
+
+logging:
+  level:
+    org.springframework.web.servlet.DispatcherServlet: DEBUG
