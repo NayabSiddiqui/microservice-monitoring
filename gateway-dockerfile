@@ -1,0 +1,10 @@
+FROM openjdk:10-jre-slim
+
+# copy jar into container
+RUN mkdir -p /gateway
+VOLUME /tmp
+COPY gateway/target/gateway*.jar /gateway/gateway.jar
+
+WORKDIR /gateway
+
+CMD java -jar gateway.jar

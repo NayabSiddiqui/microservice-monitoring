@@ -1,0 +1,12 @@
+#code related files
+.idea/
+gradle/
+out/
+src/
+
+#gradle files
+build/classes/
+build/reports/
+build/resources/
+build/test-results/
+build/tmp/

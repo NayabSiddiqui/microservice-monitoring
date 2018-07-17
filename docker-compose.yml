@@ -32,3 +32,14 @@ services:
       - 8081:8081
     depends_on:
       - influxdb
+  gateway:
+    container_name: gateway
+    build:
+      context: .
+      dockerfile: gateway-dockerfile
+    image: gateway:latest
+    ports:
+      - 9090:9090
+    depends_on:
+      - books-api
+      - countries-api
