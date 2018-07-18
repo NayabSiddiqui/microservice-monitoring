@@ -1,0 +1,10 @@
+FROM openjdk:10-jre-slim
+
+# copy jar into container
+RUN mkdir -p /zipkin
+VOLUME /tmp
+COPY zipkin-server/target/zipkin-server*.jar /zipkin/zipkin.jar
+
+WORKDIR /zipkin
+
+CMD java -jar zipkin.jar

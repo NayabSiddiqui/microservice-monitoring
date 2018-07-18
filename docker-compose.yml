@@ -12,6 +12,14 @@ services:
       - 3000:3000
     depends_on:
       - influxdb
+  zipkin-server:
+    container_name: zipkin-server
+    build:
+      context: .
+      dockerfile: zipkin-dockerfile
+    image: zipkin-server:latest
+    ports:
+      - 9411:9411
   books-api:
     container_name: books-api
     build:
@@ -22,6 +30,7 @@ services:
       - 8080:8080
     depends_on:
       - influxdb
+      - zipkin-server
   countries-api:
     container_name: countries-api
     build:
@@ -32,6 +41,7 @@ services:
       - 8081:8081
     depends_on:
       - influxdb
+      - zipkin-server
   gateway:
     container_name: gateway
     build:
@@ -43,3 +53,4 @@ services:
     depends_on:
       - books-api
       - countries-api
+      - zipkin-server
