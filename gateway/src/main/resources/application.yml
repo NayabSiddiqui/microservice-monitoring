@@ -6,6 +6,8 @@ spring:
   sleuth:
     sampler:
       percentage: 1
+    web:
+      skip-pattern: /health|/info
 
 server:
   port: 9090

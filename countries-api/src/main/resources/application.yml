@@ -8,6 +8,8 @@ spring:
   sleuth:
     sampler:
       percentage: 1
+    web:
+      skip-pattern: /health|/info
 
 server:
   context-path: /countries-api
