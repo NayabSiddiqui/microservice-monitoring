@@ -10,6 +10,10 @@ spring:
       percentage: 1
     web:
       skip-pattern: /health|/info
+    rxjava:
+      schedulers:
+        hook:
+          enabled: true
 
 server:
   context-path: /books-api
@@ -42,4 +46,5 @@ management:
 logging:
   level:
     org.springframework.web.servlet.DispatcherServlet: DEBUG
+    io.micrometer.influx: WARN
   file: books-api.log

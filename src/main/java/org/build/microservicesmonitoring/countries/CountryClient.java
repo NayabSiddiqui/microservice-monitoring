@@ -2,7 +2,6 @@ package org.build.microservicesmonitoring.countries;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -22,6 +21,7 @@ public class CountryClient {
     private String countriesEndpoint;
 
     public List<Country> getAllCountries() {
+        System.out.println("fetching countries on thread " + Thread.currentThread());
         Country[] countries = restTemplate.getForObject(baseUrl + countriesEndpoint, Country[].class);
         return Arrays.asList(countries);
     }

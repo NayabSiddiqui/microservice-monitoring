@@ -25,6 +25,8 @@
         <lombok.version>1.18.0</lombok.version>
         <micrometer.version>1.0.5</micrometer.version>
         <spring-cloud.version>Edgware.RELEASE</spring-cloud.version>
+        <rxjava.version>2.1.5</rxjava.version>
+        <guava.version>25.1-jre</guava.version>
     </properties>
 
     <dependencies>
@@ -65,7 +67,23 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
         <!--endregion-->
+
+        <dependency>
+            <groupId>io.reactivex.rxjava2</groupId>
+            <artifactId>rxjava</artifactId>
+            <version>${rxjava.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.0</version>
+        </dependency>
 
         <!--region Test utilities-->
         <dependency>
