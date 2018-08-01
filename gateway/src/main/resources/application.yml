@@ -24,3 +24,4 @@ zuul:
 logging:
   level:
     org.springframework.web.servlet.DispatcherServlet: DEBUG
+  file: gateway.log

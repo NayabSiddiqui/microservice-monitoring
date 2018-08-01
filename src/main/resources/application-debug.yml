@@ -3,3 +3,6 @@ management:
     export:
       influx:
         enabled: false
+
+logging:
+  file: books-api.log
